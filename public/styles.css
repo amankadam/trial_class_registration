@@ -1,0 +1,12 @@
+.bg {
+  background-image: url('https://chronicle.brightspotcdn.com/87/cb/8ca9f0c8c929f40d0ccb7faf3b4f/vitae-diversity-blogging.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  width:100%;
+  position:relative;
+}
+.container{
+  display: flex;
+  justify-content: center;
+}
