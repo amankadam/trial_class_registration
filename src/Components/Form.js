@@ -18,7 +18,6 @@ enableTime:true,loading:false,SuccessfulRegister:false,messageHeader:'',messageB
 
 onFormSubmit=async e=>{
   e.preventDefault();
-  console.log(e);
   this.setState({buttonDisable:true});
 var pfName=e.target[0].value;
 var psName=e.target[1].value;
@@ -39,7 +38,6 @@ var res=await axios.post('https://mysterious-scrubland-17366.herokuapp.com/api/n
 {headers:{
   'Content-Type': "application/x-www-form-urlencoded"
 }});
-console.log(res);
 if(res.data.status=='success'){
 
   for(var i=0;i<=6;i++) e.target[i].value='';
@@ -60,10 +58,8 @@ this.setState({enableTime:false});
 
 if(this.state.slots){
 var time=value.replaceAll('-','/');
-console.log(value,time,new Date(time).getTime());
 var ms=new Date(time);
 var timeSlot=[];
-console.log(this.state.slots);
 this.state.slots.map((v)=>{
   var temp=new Date(parseInt(v.slot));
   var today=new Date();
@@ -72,14 +68,12 @@ this.state.slots.map((v)=>{
   }
 });
 this.setState({timeSlots:timeSlot});
-console.log(timeSlot,'onDate');
 }
 }
 
 onCourseSelection=(e)=>{
   var allslots=[];
   if(e.target.value){
-  console.log(e.target.value);
   this.props.data.map((v)=>{
     if(v.course_name.toLowerCase()==e.target.value.toLowerCase()) allslots=v.slots;
   });
@@ -89,7 +83,6 @@ onCourseSelection=(e)=>{
   {
   this.setState({enableTime:false});
   var time=this.state.date.replaceAll('-','/');
-  console.log(this.state.date,time,new Date(time).getTime());
   var ms=new Date(time);
   var timeSlot=[];
    allslots.map((v)=>{
@@ -100,7 +93,6 @@ onCourseSelection=(e)=>{
   });
 
   this.setState({timeSlots:timeSlot});
-  console.log(timeSlot,'onCourse');
   }
 }
 

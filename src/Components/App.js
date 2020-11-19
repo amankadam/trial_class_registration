@@ -9,7 +9,6 @@ class App extends React.Component{
   }
   getData=async()=>{
     const res=await DataAPI.get();
-    console.log(res);
     this.setState({data:res.data});
   }
   render(){
