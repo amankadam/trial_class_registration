@@ -60,10 +60,18 @@ if(this.state.slots){
 var time=value.replaceAll('-','/');
 var ms=new Date(time);
 var timeSlot=[];
+var today=new Date();
 this.state.slots.map((v)=>{
   var temp=new Date(parseInt(v.slot));
-  var today=new Date();
-   if(temp.getDate()===ms.getDate() && temp.getMonth()===ms.getMonth()){
+  if(today.getDate()==ms.getDate() && today.getMonth()==ms.getMonth()){
+    if(today.getDate()==temp.getDate() && today.getMonth()==temp.getMonth()){
+    var add4=today.getTime()+(4*60*60*1000);
+      if(temp.getTime() > add4){
+      timeSlot.push(new Date(parseInt(v.slot)).toTimeString().substring(0,5));
+    }
+  }
+
+    }else  if(temp.getDate()===ms.getDate() && temp.getMonth()===ms.getMonth()){
     timeSlot.push(new Date(parseInt(v.slot)).toTimeString().substring(0,5));
   }
 });
@@ -84,12 +92,24 @@ onCourseSelection=(e)=>{
   this.setState({enableTime:false});
   var time=this.state.date.replaceAll('-','/');
   var ms=new Date(time);
+  var today=new Date();
+
   var timeSlot=[];
    allslots.map((v)=>{
     var temp=new Date(parseInt(v.slot));
-    if(temp.getDate()==ms.getDate() && temp.getMonth()==ms.getMonth()){
+
+    if(today.getDate()==ms.getDate() && today.getMonth()==ms.getMonth()){
+      if(today.getDate()==temp.getDate() && today.getMonth()==temp.getMonth()){
+      var add4=today.getTime()+(4*60*60*1000);
+        if(temp.getTime() > add4){
+        timeSlot.push(new Date(parseInt(v.slot)).toTimeString().substring(0,5));
+      }
+    }
+
+    }else if(temp.getDate()==ms.getDate() && temp.getMonth()==ms.getMonth()){
       timeSlot.push(new Date(parseInt(v.slot)).toTimeString().substring(0,5));
     }
+
   });
 
   this.setState({timeSlots:timeSlot});
